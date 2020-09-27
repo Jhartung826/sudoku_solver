@@ -15,8 +15,42 @@ puzzle = np.array([
 [0,0,0,0,8,0,0,7,9]])
 
 
+hard_puzzle = np.array([
+    [0,2,0,0,0,0,0,0,0],
+    [0,0,0,6,0,0,0,0,3],
+    [0,7,4,0,8,0,0,0,0],
+    [0,0,0,0,0,3,0,0,2],
+    [0,8,0,0,4,0,0,1,0],
+    [6,0,0,5,0,0,0,0,0],
+    [0,0,0,0,1,0,7,8,0],
+    [5,0,0,0,0,9,0,0,0],
+    [0,0,0,0,0,0,0,4,0]
+])
+def quadrant_finder(mattrix, x, y):
+    quads = [mattrix[i:i+3,j:j+3] for i in [0,3,6] for j in [0,3,6]]
+    if x < 3:
+        if y < 3:
+            return quads[0]
+        elif y < 6:
+            return quads[1]
+        else:
+            return quads[2]
+    elif x < 6:
+        if y < 3:
+            return quads[3]
+        elif y < 6:
+            return quads[4]
+        else:
+            return quads[5]
+    else:
+        if y < 3:
+            return quads[6]
+        elif y < 6:
+            return quads[7]
+        else:
+            return quads[8]
 
-
+            
 def sudoku_solver(sudoku):
     Solved = False
     unsolved = np.zeros([9,9])
